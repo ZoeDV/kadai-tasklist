@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       return true
     else
-      return flase
+      return false
     end
   end
 end
