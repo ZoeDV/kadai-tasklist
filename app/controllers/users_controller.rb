@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
   
-  def index
-    @users = User.all.page(params[:page])
-  end
+  #def index
+    #@users = User.all.page(params[:page])
+  #end
 
   def show
     @user = User.find(params[:id])
+    check_user(@user)
+    @tasks = @user.tasks.order('created_at DESC').page(params[:page])
+    counts(@user)
   end
 
   def new
@@ -29,6 +32,12 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  
+  def check_user(user)
+    unless current_user==user
+      redirect_to root_url
+    end
   end
   
 end

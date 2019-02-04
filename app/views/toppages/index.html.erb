@@ -1,5 +1,16 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="col-lg-offset-2 col-lg-8">
+      <div>
+        <%= link_to 'プロファイルを表示', user_path(current_user), class: "btn btn-md btn-default"%>
+        <%= link_to 'タスク新規の作成', new_task_path, class: "btn btn-md btn-primary" %> 
+      </div>
+      <div>
+        <h3 class="text-center">タスク</h3>
+        <%= render 'tasks/tasks', tasks: @tasks %>
+      </div>
+
+  </div>
+
 <% else %>
   <div class="center jumpbotron">
     <div class="text-center">

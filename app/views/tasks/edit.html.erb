@@ -1,3 +1,4 @@
 <h1>タスクid:<%=@task.id %>の内容編集ページ</h1>
+<h3>ユーザ:<%= @task.user.name %></h3>
 
 <%= render 'form', task: @task %>
